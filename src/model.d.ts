@@ -123,15 +123,15 @@ export type WhereOptions<TAttributes = any> =
  * _PG only_
  */
 export interface AnyOperator {
-  [Op.any]: readonly (string | number)[];
+  [Op.any]: (string | number)[];
 }
 
 /** TODO: Undocumented? */
 export interface AllOperator {
-  [Op.all]: readonly (string | number | Date | Literal)[];
+  [Op.all]: (string | number | Date | Literal)[];
 }
 
-export type Rangable = readonly [number, number] | readonly [Date, Date] | readonly [string, string] | Literal;
+export type Rangable = [number, number] | [Date, Date] | [string, string] | Literal;
 
 /**
  * Operators that can be used in WhereOptions
@@ -148,7 +148,7 @@ export interface WhereOperators {
    /** Example: `[Op.eq]: 6,` becomes `= 6` */
   [Op.eq]?: null | boolean | string | number | Literal | WhereOperators | Col | AndOperator | OrOperator;
 
-  [Op.any]?: readonly (string | number | Literal)[] | Literal;
+  [Op.any]?: (string | number | Literal)[] | Literal;
 
   /** Example: `[Op.gte]: 6,` becomes `>= 6` */
   [Op.gte]?: number | string | Date | Literal | Col;
@@ -175,10 +175,10 @@ export interface WhereOperators {
   [Op.between]?: Rangable;
 
   /** Example: `[Op.in]: [1, 2],` becomes `IN [1, 2]` */
-  [Op.in]?: readonly (string | number | Literal)[] | Literal;
+  [Op.in]?: (string | number | Literal)[] | Literal;
 
   /** Example: `[Op.notIn]: [1, 2],` becomes `NOT IN [1, 2]` */
-  [Op.notIn]?: readonly (string | number | Literal)[] | Literal;
+  [Op.notIn]?: (string | number | Literal)[] | Literal;
 
   /**
    * Examples:
@@ -215,14 +215,14 @@ export interface WhereOperators {
    *
    * Example: `[Op.contains]: [1, 2]` becomes `@> [1, 2]`
    */
-  [Op.contains]?: readonly (string | number)[] | Rangable;
+  [Op.contains]?: (string | number)[] | Rangable;
 
   /**
    * PG array contained by operator
    *
    * Example: `[Op.contained]: [1, 2]` becomes `<@ [1, 2]`
    */
-  [Op.contained]?: readonly (string | number)[] | Rangable;
+  [Op.contained]?: (string | number)[] | Rangable;
 
   /** Example: `[Op.gt]: 6,` becomes `> 6` */
   [Op.gt]?: number | string | Date | Literal | Col;
@@ -321,12 +321,12 @@ export interface WhereOperators {
 
 /** Example: `[Op.or]: [{a: 5}, {a: 6}]` becomes `(a = 5 OR a = 6)` */
 export interface OrOperator<TAttributes = any> {
-  [Op.or]: WhereOptions<TAttributes> | readonly WhereOptions<TAttributes>[] | WhereValue<TAttributes> | readonly WhereValue<TAttributes>[];
+  [Op.or]: WhereOptions<TAttributes> | WhereOptions<TAttributes>[] | WhereValue<TAttributes> | WhereValue<TAttributes>[];
 }
 
 /** Example: `[Op.and]: {a: 5}` becomes `AND (a = 5)` */
 export interface AndOperator<TAttributes = any> {
-  [Op.and]: WhereOptions<TAttributes> | readonly WhereOptions<TAttributes>[] | WhereValue<TAttributes> | readonly WhereValue<TAttributes>[];
+  [Op.and]: WhereOptions<TAttributes> | WhereOptions<TAttributes>[] | WhereValue<TAttributes> | WhereValue<TAttributes>[];
 }
 
 /**
@@ -334,7 +334,7 @@ export interface AndOperator<TAttributes = any> {
  */
 export interface WhereGeometryOptions {
   type: string;
-  coordinates: readonly (number[] | number)[];
+  coordinates: (number[] | number)[];
 }
 
 /**
@@ -356,7 +356,7 @@ export type WhereValue<TAttributes = any> =
   | OrOperator<TAttributes>
   | AndOperator<TAttributes>
   | WhereGeometryOptions
-  | readonly (string | number | Buffer | WhereAttributeHash<TAttributes>)[]; // implicit [Op.or]
+  | (string | number | Buffer | WhereAttributeHash<TAttributes>)[]; // implicit [Op.or]
 
 /**
  * A hash of attributes to describe your search.

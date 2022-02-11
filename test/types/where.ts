@@ -42,7 +42,7 @@ expectTypeOf({
   [Op.or]: [{ a: 5 }, { a: 6 }], // (a = 5 OR a = 6)
 }).toMatchTypeOf<OrOperator<{ a: number }>>();
 
-expectTypeOf({
+const whereOperators: WhereOperators = {
   [Op.eq]: 6, // = 6
   [Op.eq]: Sequelize.col('SOME_COL'), // = <column>
   [Op.gt]: 6, // > 6
@@ -75,7 +75,7 @@ expectTypeOf({
   [Op.notRegexp]: '^[h|a|t]', // NOT REGEXP/!~ '^[h|a|t]' (MySQL/PG only)
   [Op.iRegexp]: '^[h|a|t]',  // ~* '^[h|a|t]' (PG only)
   [Op.notIRegexp]: '^[h|a|t]' // !~* '^[h|a|t]' (PG only)
-} as const).toMatchTypeOf<WhereOperators>();
+};
 
 expectTypeOf({
   [Op.like]: { [Op.any]: ['cat', 'hat'] }, // LIKE ANY ARRAY['cat', 'hat']
