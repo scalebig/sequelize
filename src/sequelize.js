@@ -350,6 +350,9 @@ class Sequelize {
       case 'snowflake':
         Dialect = require('./dialects/snowflake');
         break;
+      case 'cloudspanner':
+        Dialect = require('./dialects/cloudspanner');
+        break;
       default:
         throw new Error(`The dialect ${this.getDialect()} is not supported. Supported dialects: mssql, mariadb, mysql, postgres, db2 and sqlite.`);
     }

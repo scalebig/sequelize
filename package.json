@@ -58,6 +58,7 @@
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-angular": "^15.0.0",
+    "@google-cloud/spanner": "^5.17.0",
     "@octokit/rest": "^18.12.0",
     "@octokit/types": "^6.34.0",
     "@types/chai": "^4.3.0",
@@ -260,6 +261,7 @@
     "test-integration-mssql": "cross-env DIALECT=mssql npm run test-integration",
     "test-integration-db2": "cross-env DIALECT=db2 npm run test-integration",
     "test-integration-snowflake": "cross-env DIALECT=snowflake npm run test-integration",
+    "test-integration-cloudspanner": "cross-env DIALECT=snowflake npm run test-integration",
     "test-mariadb": "cross-env DIALECT=mariadb npm test",
     "test-mysql": "cross-env DIALECT=mysql npm test",
     "test-sqlite": "cross-env DIALECT=sqlite npm test",

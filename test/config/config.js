@@ -81,5 +81,17 @@ module.exports = {
       max: process.env.SEQ_DB2_POOL_MAX  || process.env.SEQ_POOL_MAX  || 5,
       idle: process.env.SEQ_DB2_POOL_IDLE || process.env.SEQ_POOL_IDLE || 3000
     }
+  },
+
+  cloudspanner: {
+    // username: env.SEQ_SNOWFLAKE_USER || env.SEQ_USER || 'root',
+    // password: env.SEQ_SNOWFLAKE_PW || env.SEQ_PW || null,
+    database: env.SEQ_CLOUDSPANNER_DB || env.SEQ_DB || 'labflow_identity_dev',
+    dialectOptions: {
+      projectId: env.SEQ_CLOUDSPANNER_PROJECT_ID || env.SEQ_PROJECT_ID || 'catalyst-platform',
+      instanceId: env.SEQ_CLOUDSPANNER_INSTANCE_ID || env.SEQ_INSTANCE_ID || 'labflow-poc',
+      keyFilename: env.SEQ_CLOUDSPANNER_KEY_FILENAME || env.SEQ_KEY_FILENAME || '/Users/timothysmith/development/catalyst/catalyst-labflow/api-njs/gcloud-app-creds.json'
+    }
   }
+
 };
